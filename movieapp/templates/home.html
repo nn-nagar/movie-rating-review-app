@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if movies %}
+<div class="container">
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th>Movie ID</th>
+          <th>Title</th>
+          <th>Poster</th>
+          <th>Genres</th>
+          <th>Ratings</th>
+          <th>Year-Release</th>
+          <th>Metacritic Rating</th>
+          <th>Runtime</th>
+      </tr>
+    </thead>
+    <tbody>
+    <!-- jinja2 Technique -->
+
+{% for movie in movies %}
+
+
+<tr>
+
+    <td>{{movie.movie_id}}</td>
+    <td>{{movie.title}}</td>
+    <td><img src="{{movie.poster}}" alt="" width="25" height="25"></td>
+    <td>{{movie.genres}}</td>
+    <td>{{movie.ratings}}</td>
+    <td>{{movie.year_release}}</td>
+    <td>{{movie.metacritic_rating}}</td>
+    <td>{{movie.runtime}}</td>
+
+
+
+</tr>
+
+
+{% endfor %}
+
+    </tbody>
+  </table>
+</div>
+{% elif search_results %}
+<h2>Search Results...</h2>
+{% for movie in search_results %}
+<div class="w3-row w3-margin">
+    <div class="w3-twothird w3-container">
+        <h4><a href="/{{ movie.movie_id }}/">{{ movie.title }}</a></h4>
+    </div>
+</div>
+{% endfor %}
+
+{% else %}
+<h1>Nothing</h1>
+{% endif %}
+{% endblock %}
